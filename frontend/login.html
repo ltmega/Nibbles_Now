@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nibbles Now</title>
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/auth.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Nibbles Now</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/frontend/categories.html">Categories</a></li>
+                <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
+                <li><a href="#">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="auth-page">
+        <section id="user-login-form" class="login-form">
+            <h3>Login</h3>
+            <form id="userLoginForm">
+                <div class="form-group">
+                    <label for="user-identifier">Username or Email:</label>
+                    <input type="text" id="user-identifier" name="identifier" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Password:</label>
+                    <input type="password" id="user-password" name="password" required>
+                </div>
+                <button type="submit" class="button">Login</button>
+                <p class="signup-link">Don't have an account? <a href="/frontend/register.html">Sign up</a></p>
+                <div id="user-login-error" class="error-message" style="display: none;"></div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nibbles Now</p>
+    </footer>
+
+    <script src="/frontend/js/script.js"></script>
+    <script src="/frontend/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nibbles Now</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="logo">Nibbles Now Admin</div>
+        <nav>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="riders.html">Riders</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-dashboard">
+        <h2>Admin Dashboard Overview</h2>
+        <section class="dashboard-overview">
+            <div class="overview-card">
+                <h3>Total Orders</h3>
+                <p id="total-orders">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>New Orders</h3>
+                <p id="new-orders">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Total Products</h3>
+                <p id="total-products">0</p>
+            </div>
+            <div class="overview-card">
+                <h3>Active Riders</h3>
+                <p id="active-riders">0</p>
+            </div>
+        </section>
+        <section class="recent-activity">
+            <h3>Recent Orders</h3>
+            <table id="recent-orders-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nibbles Now - Admin Area</p>
+    </footer>
+
+    <script src="../../js/script.js"></script>
+    <script src="../../js/admin/dashboard.js"></script>
+</body>
+</html>

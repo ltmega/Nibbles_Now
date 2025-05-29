@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Nibbles Now</title>
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/frontend/index.html">Home</a>
+            <a href="/frontend/categories.html">Products</a>
+            <a href="/frontend/user_end/orders.html">Orders</a>
+            <a href="/frontend/user_end/profile.html">Profile</a>
+            <a href="/frontend/logout.html">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section class="profile-section">
+            <h1>My Profile</h1>
+            <div id="profile-container">
+                <!-- Profile info will be loaded here via JS -->
+            </div>
+            <a href="/frontend/user_end/edit-profile.html" class="button">Edit Profile</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Nibbles Now. All rights reserved.</p>
+    </footer>
+    <script>
+    // Replace userId with real session/user logic
+    const userId = 1;
+    document.addEventListener('DOMContentLoaded', async () => {
+        const res = await fetch('http://localhost:3000/api/users/' + userId);
+        const user = await res.json();
+        const container = document.getElementById('profile-container');
+        if (res.ok) {
+            container.innerHTML = `
+                <p><strong>Username:</strong> ${user.username}</p>
+                <p><strong>Email:</strong> ${user.email || ''}</p>
+            `;
+        } else {
+            container.innerHTML = `<p>Profile not found.</p>`;
+        }
+    });
+    </script>
+</body>
+</html>

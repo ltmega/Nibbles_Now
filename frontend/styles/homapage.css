@@ -1,0 +1,120 @@
+.homepage {
+    padding: 2em;
+}
+
+.featured-snacks {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.featured-snacks h2 {
+    margin-bottom: 1.5em;
+    color: #333;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5em;
+    margin-bottom: 1em;
+}
+
+.featured-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.featured-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5em;
+    border-radius: 5px;
+}
+
+.featured-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+    color: #333;
+}
+
+.featured-card .price {
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 0.5em;
+}
+
+.featured-card .button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.featured-card .button:hover {
+    background-color: #219653;
+}
+
+.view-all {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.view-all .button {
+    background-color: #3498db;
+    color: white;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-all .button:hover {
+    background-color: #2980b9;
+}
+
+.categories-overview {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.categories-overview h2 {
+    margin-bottom: 1.5em;
+    color: #333;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5em;
+    margin-top: 1.5em;
+}
+
+.category-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5em;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-card img {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 1em;
+    border-radius: 5px;
+}
+
+.category-card h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    color: #333;
+}

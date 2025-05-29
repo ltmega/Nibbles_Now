@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Nibbles Now</title>
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/cart.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Nibbles Now</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/frontend/categories.html">Categories</a></li>
+                <li><a href="#">Cart (<span id="cart-item-count">0</span>)</a></li>
+                <li><a href="/frontend/login.html">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <div class="cart-container">
+            <!-- Cart Items Section (Left) -->
+            <div class="cart-items-section">
+                <h2>Your Cart</h2>
+                <div id="cart-items-container"></div>
+                <div id="empty-cart-message" style="display:none;">Your cart is empty.</div>
+            </div>
+            <!-- Cart Summary Section (Right) -->
+            
+        </div>
+        <div class="cart-summary-section">
+                <h3>Summary</h3>
+                <div class="summary-item"><span>Subtotal:</span> <span id="cart-subtotal">UGX 0</span></div>
+                <div class="summary-item"><span>Delivery Fee:</span> <span id="cart-delivery-fee">UGX 5,000</span></div>
+                <div class="summary-item total"><span>Total:</span> <span id="cart-total">UGX 0</span></div>
+                <button id="checkout-btn" class="button" disabled>Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nibbles Now</p>
+    </footer>
+
+    <script src="/frontend/js/cart.js"></script>
+</body>
+</html>
