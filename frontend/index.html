@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nibbles Now - Your Snack Delivery</title>
     <link rel="stylesheet" href="/frontend/styles/styles.css">
-    <!--<link rel="stylesheet" href="/frontend/styles/homepage.css">-->
 </head>
 <body>
     <header>
@@ -21,43 +20,14 @@
     </header>
 
     <main class="homepage">
-        <section class="featured-snacks">
+        <section class="popular-snacks">
             <h2>Popular Snacks</h2>
-            <div class="featured-grid" id="featured-snacks-container">
-                </div>
+            <div class="popular-snacks-row" id="popular-snacks-container">
+                <!-- JS will inject snack cards here -->
+            </div>
             <div class="view-all">
-                <a href="/frontend/categories.html" class="button">View All Snacks</a>
+                <a href="/frontend/categories.html" class="button">View More Snacks</a>
             </div>
-        </section>
-
-        <!-- Popular Snacks Section -->
-        <section class="featured-snacks">
-            <h2>Popular Snacks</h2>
-            <div class="featured-grid">
-                <a href="/frontend/categories.html" class="featured-card">
-                    <img src="/images/groundnuts.jpg" alt="Roasted Groundnuts">
-                    <h3>Roasted Groundnuts</h3>
-                </a>
-                <a href="/frontend/categories.html" class="featured-card">
-                    <img src="/images/chocolate.jpg" alt="Chocolate Bar">
-                    <h3>Chocolate Bar</h3>
-                </a>
-                <a href="/frontend/categories.html" class="featured-card">
-                    <img src="/images/coke.jpg" alt="Soda (Coke)">
-                    <h3>Soda (Coke)</h3>
-                </a>
-                <a href="/frontend/categories.html" class="featured-card">
-                    <img src="/images/fruitsalad.jpg" alt="Fruit Salad">
-                    <h3>Fruit Salad</h3>
-                </a>
-                <a href="/frontend/categories.html" class="featured-card">
-                    <img src="/images/simsim_balls.jpg" alt="Simsim Balls">
-                    <h3>Simsim Balls</h3>
-                </a>
-            </div>
-                <div class="view-all">
-                    <a href="/frontend/categories.html" class="button">View All Snacks</a>
-                </div>
         </section>
     </main>
 
@@ -65,8 +35,7 @@
         <p>&copy; 2025 Nibbles Now - Serving Kampala</p>
     </footer>
 
-    <script src="/frontend/js/script.js"></script>
-    <script src="/frontend/js/index.js"></script>
     <script src="/frontend/js/cart.js"></script>
+    <script src="/frontend/js/index.js"></script>
 </body>
 </html>

@@ -1,47 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
     const categoryListContainer = document.getElementById('category-list-container');
-    const imageMap = {
-        'Local Snacks': '/frontend/images/groundnuts.jpg',
-        'Packaged Snacks': '/frontend/images/chocolate.jpg',
-        'Beverages': '/frontend/images/coke.jpg',
-        'Healthy Options': '/frontend/images/fruitsalad.jpg'
-    };
+    const desiredOrder = [
+        'Local Snacks',
+        'Beverages',
+        'Packaged Snacks',
+        'Healthy Options'
+    ];
 
     async function fetchCategoriesWithProducts() {
         const response = await fetch('http://localhost:3000/api/categories/with-products');
-        const categories = await response.json();
+        let categories = await response.json();
+
+        // Sort and filter categories in the desired order, remove undefined
+        categories = desiredOrder.map(name => categories.find(cat => cat.category_name === name)).filter(Boolean);
+
         displayCategories(categories);
     }
 
     function displayCategories(categories) {
         categoryListContainer.innerHTML = '';
         categories.forEach(category => {
-            const categoryCard = document.createElement('div');
-            categoryCard.classList.add('category-card-section');
-            // Show only first 4 products by default
-            const productsToShow = category.products.slice(0, 4);
-            categoryCard.innerHTML = `
-                <div class="category-header">
-                    <img src="${imageMap[category.category_name] || '/frontend/images/default.jpg'}" alt="${category.category_name}">
-                    <h3>${category.category_name}</h3>
-                </div>
-                <div class="product-list-grid">
-                    ${productsToShow.map(product => `
-                        <div class="product-card">
-                            <img src="${product.image_url || '/frontend/images/default.jpg'}" alt="${product.product_name}">
-                            <h4>${product.product_name}</h4>
-                            <p>${product.description || ''}</p>
-                            <p class="price">UGX ${Number(product.price).toLocaleString()}</p>
-                            <button class="button add-to-cart" data-product-id="${product.product_id}" data-product-name="${product.product_name}" data-product-price="${product.price}" data-product-image="${product.image_url}">Add to Cart</button>
-                        </div>
-                    `).join('')}
-                </div>
-                ${category.products.length > 4 ? `<button class="view-more-btn" data-category='${JSON.stringify(category)}'>View More</button>` : ''}
-            `;
-            categoryListContainer.appendChild(categoryCard);
+            // Only render the section if there are products (even if just one)
+            if (category.products && category.products.length > 0) {
+                const section = document.createElement('section');
+                section.classList.add('category-section');
+                section.innerHTML = `
+                    <h2 class="category-title">${category.category_name}</h2>
+                    <div class="product-list-horizontal">
+                        ${category.products.slice(0, 4).map(product => `
+                            <div class="product-card">
+                                <img src="${product.image_url || '/frontend/images/default.jpg'}" alt="${product.product_name}">
+                                <h4>${product.product_name}</h4>
+                                <p>${product.description || ''}</p>
+                                <p class="price">UGX ${Number(product.price).toLocaleString()}</p>
+                                <button class="button add-to-cart" data-product-id="${product.product_id}" data-product-name="${product.product_name}" data-product-price="${product.price}" data-product-image="${product.image_url}">Add to Cart</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${category.products.length > 4 ? `<button class="view-more-btn" data-category='${JSON.stringify(category)}'>View More</button>` : ''}
+                `;
+                categoryListContainer.appendChild(section);
+            }
         });
 
-        // Add event listeners for Add to Cart buttons
+        attachAddToCartListeners();
+        attachViewMoreListeners();
+    }
+
+    function attachAddToCartListeners() {
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const product = {
@@ -50,16 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     price: Number(this.dataset.productPrice),
                     image_url: this.dataset.productImage
                 };
-                addToCart(product);
+                if (window.addToCart) {
+                    window.addToCart(product);
+                }
             });
         });
+    }
 
-        // View More functionality
+    function attachViewMoreListeners() {
         document.querySelectorAll('.view-more-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const category = JSON.parse(this.dataset.category);
-                const productListGrid = this.parentElement.querySelector('.product-list-grid');
-                productListGrid.innerHTML = category.products.map(product => `
+                const productListRow = this.parentElement.querySelector('.product-list-horizontal');
+                productListRow.innerHTML = category.products.map(product => `
                     <div class="product-card">
                         <img src="${product.image_url || '/frontend/images/default.jpg'}" alt="${product.product_name}">
                         <h4>${product.product_name}</h4>
@@ -69,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `).join('');
                 this.style.display = 'none';
+                attachAddToCartListeners();
             });
         });
     }
