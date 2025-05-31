@@ -8,55 +8,36 @@
 </head>
 <body>
     <header>
+        <div class="logo">Nibbles Now</div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="orders.html">Orders</a>
-            <a href="profile.html">Profile</a>
-            <a href="logout.html">Logout</a>
+            <ul>
+                <li><a href="/frontend/index.html">Home</a></li>
+                <li><a href="/frontend/categories.html">Categories</a></li>
+                <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
+                <li><a href="/frontend/user_end/user.html">Dashboard</a></li>
+                <li><a href="/frontend/user_end/orders.html">My Orders</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        <section class="profile-section">
-            <h1>Edit Profile</h1>
-            <form id="edit-profile-form" class="profile-form">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="phone_number">Phone Number:</label>
-                <input type="text" id="phone_number" name="phone_number">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address">
-                <button type="submit" class="button">Save Changes</button>
-            </form>
-        </section>
+    <main class="profile-section">
+        <h1>Edit Profile</h1>
+        <form id="edit-profile-form" class="profile-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            <button type="submit" class="button">Save Changes</button>
+        </form>
     </main>
     <footer>
-        <p>&copy; 2025 Nibbles Now. All rights reserved.</p>
+        <p>&copy; 2025 Nibbles Now</p>
     </footer>
-    <script>
-    document.getElementById('edit-profile-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        // You'd get userId from session/auth in a real app
-        const userId = 1;
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const phone_number = document.getElementById('phone_number').value;
-        const address = document.getElementById('address').value;
-        const res = await fetch('http://localhost:3000/api/users/' + userId, {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ username, email, phone_number, address })
-        });
-        const data = await res.json();
-        if(res.ok) {
-            alert('Profile updated!');
-            window.location.href = 'profile.html';
-        } else {
-            alert(data.message || 'Update failed.');
-        }
-    });
-    </script>
+    <script src="/frontend/js/edit-profile.js"></script>
+    <script src="/frontend/js/cart.js"></script>
 </body>
 </html>

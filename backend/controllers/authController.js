@@ -5,7 +5,6 @@ const jwtSecret = 'your_secret_key';
 
 exports.login = (req, res) => {
     const { identifier, username, password, role } = req.body;
-    // Use identifier for user, username for admin
     const userField = identifier ? 'username' : 'username';
     const userValue = identifier || username;
 
@@ -20,15 +19,21 @@ exports.login = (req, res) => {
             bcrypt.compare(password, user.password, (err, isMatch) => {
                 if (err || !isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
-                // Optionally check role here if you have a role column
-                // if (role && user.role !== role) return res.status(403).json({ message: 'Unauthorized' });
-
                 const token = jwt.sign(
                     { user_id: user.user_id, username: user.username, role: role || 'user' },
                     jwtSecret,
                     { expiresIn: '1d' }
                 );
-                res.json({ token });
+                // Only send safe user info (never send password)
+                const safeUser = {
+                    user_id: user.user_id,
+                    username: user.username,
+                    email: user.email,
+                    full_name: user.full_name,
+                    phone_number: user.phone_number,
+                    address: user.address
+                };
+                res.json({ token, user: safeUser });
             });
         }
     );

@@ -22,9 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    localStorage.setItem('userToken', data.token);
-                    window.location.href = '/frontend/user_end/user.html';
-                } else {
+    localStorage.setItem('userToken', data.token);
+    localStorage.setItem('userInfo', JSON.stringify(data.user)); // <-- ADD THIS LINE
+    window.location.href = '/frontend/user_end/user.html';
+}else {
                     userLoginError.textContent = data.message || 'Login failed. Please check your credentials.';
                     userLoginError.style.display = 'block';
                 }

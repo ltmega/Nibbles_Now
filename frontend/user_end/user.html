@@ -19,52 +19,34 @@
                 <li><a href="/frontend/user_end/profile.html">My Profile</a></li>
                 <li><a href="#" id="logout-btn">Logout</a></li>
             </ul>
-            <div class="user-greeting" style="float:right; font-weight:bold;">
-                Hi, <span id="nav-user-name"></span>
-            </div>
         </nav>
     </header>
-
     <main class="user-dashboard">
         <section class="dashboard-welcome">
             <h2>Welcome, <span id="user-name"></span>!</h2>
+            <p>Here’s a quick overview of your activity.</p>
         </section>
         <section class="dashboard-overview">
             <div class="overview-card">
                 <h3>Recent Orders</h3>
-                <ul id="recent-orders-list">
-                    <!-- Recent orders will be loaded here -->
+                <ul id="recent-orders">
+                    <li>Loading...</li>
                 </ul>
                 <a href="/frontend/user_end/orders.html">View All Orders</a>
             </div>
             <div class="overview-card">
-                <h3>Profile Information</h3>
-                <p>Email: <span id="user-email"></span></p>
-                <p>Address: <span id="user-address"></span></p>
-                <a href="/frontend/user_end/profile.html">Edit Profile</a>
+                <h3>Your Profile</h3>
+                <ul>
+                    <li>Email: <span id="user-email"></span></li>
+                </ul>
+                <a href="/frontend/user_end/profile.html">View/Edit Profile</a>
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2025 Nibbles Now</p>
     </footer>
-
-    <script src="/frontend/js/script.js"></script>
-    <script>
-        // Example: Load user info from localStorage or API
-        document.addEventListener('DOMContentLoaded', () => {
-            // Replace with real user data fetching logic
-            const user = JSON.parse(localStorage.getItem('userInfo')) || {
-                full_name: 'User',
-                email: 'user@example.com',
-                address: 'Kampala, Uganda'
-            };
-            document.getElementById('user-name').textContent = user.full_name;
-            document.getElementById('nav-user-name').textContent = user.full_name;
-            document.getElementById('user-email').textContent = user.email;
-            document.getElementById('user-address').textContent = user.address;
-        });
-    </script>
+    <script src="/frontend/js/user.js"></script>
+    <script src="/frontend/js/cart.js"></script>
 </body>
 </html>
