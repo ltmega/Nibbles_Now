@@ -23,8 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
     localStorage.setItem('userToken', data.token);
-    localStorage.setItem('userInfo', JSON.stringify(data.user)); // <-- ADD THIS LINE
-    window.location.href = '/frontend/user_end/user.html';
+    localStorage.setItem('userInfo', JSON.stringify(data.user));
+    if (data.user && data.user.role === 'admin') {
+        window.location.href = '/frontend/admin_end/admin.html';
+    } else {
+        window.location.href = '/frontend/user_end/user.html';
+    }
 }else {
                     userLoginError.textContent = data.message || 'Login failed. Please check your credentials.';
                     userLoginError.style.display = 'block';
@@ -56,7 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     localStorage.setItem('adminToken', data.token);
-                    window.location.href = '/frontend/admin_end /admin.html';
+                    // Only redirect if user is actually admin
+                    if (data.user && data.user.role === 'admin') {
+                        window.location.href = '/frontend/admin_end/admin.html';
+                    } else {
+                        adminLoginError.textContent = 'Not an admin account.';
+                        adminLoginError.style.display = 'block';
+                    }
                 } else {
                     adminLoginError.textContent = data.message || 'Admin login failed. Please check your credentials.';
                     adminLoginError.style.display = 'block';

@@ -19,8 +19,13 @@ exports.login = (req, res) => {
             bcrypt.compare(password, user.password, (err, isMatch) => {
                 if (err || !isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
+                // Check if admin login is requested and user is actually admin
+                if (role === 'admin' && user.role !== 'admin') {
+                    return res.status(401).json({ message: 'Not an admin account.' });
+                }
+
                 const token = jwt.sign(
-                    { user_id: user.user_id, username: user.username, role: role || 'user' },
+                    { user_id: user.user_id, username: user.username, role: user.role || 'user' },
                     jwtSecret,
                     { expiresIn: '1d' }
                 );
@@ -31,7 +36,8 @@ exports.login = (req, res) => {
                     email: user.email,
                     full_name: user.full_name,
                     phone_number: user.phone_number,
-                    address: user.address
+                    address: user.address,
+                    role: user.role || 'user'
                 };
                 res.json({ token, user: safeUser });
             });

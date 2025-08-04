@@ -11,18 +11,21 @@
     <header>
         <div class="logo">Nibbles Now</div>
         <nav>
-            <ul>
+            <ul id="nav-list">
                 <li><a href="/frontend/index.html">Home</a></li>
                 <li><a href="/frontend/categories.html">Categories</a></li>
                 <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
-                <li><a href="/frontend/login.html">Login/Register</a></li>
+                <li id="nav-user-orders"><a href="/frontend/user_end/orders.html">My Orders</a></li>
+                <li id="nav-user-profile"><a href="/frontend/user_end/profile.html">My Profile</a></li>
+                <li id="nav-logout"><a href="#" id="logout-btn">Logout</a></li>
+                <li id="nav-login"><a href="/frontend/login.html">Login/Register</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="categories-page">
         <h1 id="category-title">Products</h1>
-        <input type="text" id="product-search" placeholder="Search products..." style="padding:0.7em; width:60%; border-radius:5px; border:1px solid #ccc; margin-bottom:2em;">
+        <input type="text" id="product-search" placeholder="Search products...">
         <div class="category-list" id="product-list-container">
             <!-- Products will be loaded here by JS -->
         </div>
@@ -32,8 +35,24 @@
     </footer>
 
     <script>
-    // Simple script to fetch and display products for the selected category
+    // User navigation logic
     document.addEventListener('DOMContentLoaded', () => {
+        // Navigation for logged-in users
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            document.getElementById('nav-user-orders').style.display = '';
+            document.getElementById('nav-user-profile').style.display = '';
+            document.getElementById('nav-logout').style.display = '';
+            document.getElementById('nav-login').style.display = 'none';
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('userInfo');
+                window.location.href = '/frontend/login.html';
+            });
+        }
+
+        // Product list logic
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get('category');
         const categoryTitle = document.getElementById('category-title');

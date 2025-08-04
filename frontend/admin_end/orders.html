@@ -5,53 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Orders - Nibbles Now</title>
     <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/admin.css">
 </head>
 <body>
-    <header>
+    <header class="admin-header">
+        <div class="logo">Nibbles Now Admin</div>
         <nav>
-            <a href="/frontend/admin_end/orders.html">Orders</a>
-            <a href="/frontend/admin_end/products.html">Products</a>
-            <a href="/frontend/admin_end/users.html">Users</a>
+            <ul>
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="orders.html" class="active">Orders</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="riders.html">Riders</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        <section class="admin-orders-section">
-            <h1>All Orders</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>User</th>
-                        <th>Date</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-orders-table-body">
-                    <!-- Orders will be loaded here via JS -->
-                </tbody>
-            </table>
-        </section>
+    <main class="admin-orders-section">
+        <h2>All Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody id="admin-orders-table-body">
+                <!-- Orders will be loaded here via JS -->
+            </tbody>
+        </table>
     </main>
     <footer>
-        <p>&copy; 2025 Nibbles Now. All rights reserved.</p>
+        <p>&copy; 2025 Nibbles Now - Admin Area</p>
     </footer>
     <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const res = await fetch('http://localhost:3000/api/orders');
-        const orders = await res.json();
-        const tbody = document.getElementById('admin-orders-table-body');
-        tbody.innerHTML = orders.map(order => `
-            <tr>
-                <td>${order.order_id}</td>
-                <td>${order.username || order.user_id}</td>
-                <td>${order.order_date}</td>
-                <td>UGX ${order.total_amount}</td>
-                <td>${order.status || 'N/A'}</td>
-                <td><a href="/frontend/user_end/order-details.html?order_id=${order.order_id}">View</a></td>
-            </tr>
-        `).join('');
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('userInfo');
+            window.location.href = '/frontend/login.html';
+        });
+        // Load orders
+        async function loadOrders() {
+            const res = await fetch('http://localhost:3000/api/orders');
+            const orders = await res.json();
+            const tbody = document.getElementById('admin-orders-table-body');
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td>${order.order_id}</td>
+                    <td>${order.username || order.user_id}</td>
+                    <td>${order.order_date || order.created_at || ''}</td>
+                    <td>UGX ${order.total_amount}</td>
+                    <td>${order.status || 'N/A'}</td>
+                    <td><a href="/frontend/user_end/order-details.html?order_id=${order.order_id}">View</a></td>
+                </tr>
+            `).join('');
+        }
+        loadOrders();
     });
     </script>
 </body>

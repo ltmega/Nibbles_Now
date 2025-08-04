@@ -1,0 +1,168 @@
+body {
+    background-color: #111;
+    color: #eee;
+}
+.admin-header {
+    background-color: #000;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.admin-header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+}
+.admin-header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.admin-header nav ul li {
+    margin-left: 1em;
+}
+.admin-header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5em 1em;
+    border-radius: 5px 5px 0 0;
+    transition: background 0.2s;
+}
+.admin-header nav a.active, .admin-header nav a:hover {
+    background: #222;
+    color: #ffd700;
+}
+.admin-dashboard, .admin-orders-section, .admin-products-section {
+    background: #222;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    padding: 2em 1em 1em 1em;
+    margin: 2em auto;
+    max-width: 1100px;
+}
+.overview-card {
+    background: #333;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.admin-products-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    background: #222;
+    color: #fff;
+}
+.admin-products-section th, .admin-products-section td {
+    padding: 0.8em 0.5em;
+    border-bottom: 1px solid #444;
+    text-align: left;
+}
+.admin-products-section th {
+    background: #111;
+    color: #ffd700;
+}
+.admin-products-section tr:hover {
+    background: #333;
+}
+.admin-products-section button {
+    background: #ffd700;
+    color: #222;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin-top: auto;
+    transition: background 0.2s;
+}
+.admin-products-section button:hover {
+    background: #fff;
+    color: #000;
+}
+footer {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.6);
+}
+.modal-content {
+  background: #222;
+  color: #fff;
+  margin: 5% auto;
+  padding: 2em;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+.close {
+  color: #ffd700;
+  float: right;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+#add-product-form label {
+  margin-top: 1em;
+  font-weight: 500;
+}
+#add-product-form input {
+  margin-bottom: 1em;
+  padding: 0.7em;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #333;
+  color: #fff;
+}
+#add-product-form .button {
+  background: #ffd700;
+  color: #222;
+  border: none;
+  padding: 0.8em 0;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #222;
+  color: #fff;
+  margin-top: 1em;
+}
+.admin-table th, .admin-table td {
+  padding: 0.8em 0.5em;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+.admin-table th {
+  background: #111;
+  color: #ffd700;
+}
+.admin-table tr:hover {
+  background: #333;
+}

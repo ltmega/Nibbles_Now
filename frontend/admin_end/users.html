@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Riders - Nibbles Now</title>
+    <title>Admin Users - Nibbles Now</title>
     <link rel="stylesheet" href="/frontend/styles/styles.css">
     <link rel="stylesheet" href="/frontend/styles/admin.css">
 </head>
@@ -15,26 +15,26 @@
                 <li><a href="admin.html">Dashboard</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="orders.html">Orders</a></li>
-                <li><a href="users.html">Users</a></li>
-                <li><a href="riders.html" class="active">Riders</a></li>
+                <li><a href="users.html" class="active">Users</a></li>
+                <li><a href="riders.html">Riders</a></li>
                 <li><a href="#" id="logout-btn">Logout</a></li>
             </ul>
         </nav>
     </header>
-    <main class="admin-riders-section">
-        <h2>All Riders</h2>
+    <main class="admin-users-section">
+        <h2>All Users</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Rider ID</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Status</th>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="admin-riders-table-body">
-                <!-- Riders will be loaded here via JS -->
+            <tbody id="admin-users-table-body">
+                <!-- Users will be loaded here via JS -->
             </tbody>
         </table>
     </main>
@@ -49,27 +49,27 @@
             localStorage.removeItem('userInfo');
             window.location.href = '/frontend/login.html';
         });
-        // Load riders
-        async function loadRiders() {
-            const res = await fetch('http://localhost:3000/api/riders');
-            const riders = await res.json();
-            const tbody = document.getElementById('admin-riders-table-body');
-            tbody.innerHTML = riders.map(rider => `
+        // Load users
+        async function loadUsers() {
+            const res = await fetch('http://localhost:3000/api/users');
+            const users = await res.json();
+            const tbody = document.getElementById('admin-users-table-body');
+            tbody.innerHTML = users.map(user => `
                 <tr>
-                    <td>${rider.rider_id}</td>
-                    <td>${rider.name}</td>
-                    <td>${rider.phone}</td>
-                    <td>${rider.status || 'active'}</td>
-                    <td><button onclick="deleteRider(${rider.rider_id})">Delete</button></td>
+                    <td>${user.user_id}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role || 'customer'}</td>
+                    <td><button onclick="deleteUser(${user.user_id})">Delete</button></td>
                 </tr>
             `).join('');
         }
-        loadRiders();
+        loadUsers();
     });
-    async function deleteRider(id) {
-        await fetch(`http://localhost:3000/api/riders/${id}`, { method: 'DELETE' });
+    async function deleteUser(id) {
+        await fetch(`http://localhost:3000/api/users/${id}`, { method: 'DELETE' });
         document.addEventListener('DOMContentLoaded', () => {
-            loadRiders();
+            loadUsers();
         });
     }
     </script>
