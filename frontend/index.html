@@ -10,12 +10,7 @@
     <header>
         <div class="logo">Nibbles Now</div>
         <nav>
-            <ul>
-                <li><a href="/frontend/index.html">Home</a></li>
-                <li><a href="/frontend/categories.html">Categories</a></li>
-                <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
-                <li><a href="/frontend/login.html">Login/Register</a></li>
-            </ul>
+            <ul id="nav-list"></ul>
         </nav>
     </header>
 
@@ -37,5 +32,38 @@
 
     <script src="/frontend/js/cart.js"></script>
     <script src="/frontend/js/index.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navList = document.getElementById('nav-list');
+        const userInfo = localStorage.getItem('userInfo');
+        let navHtml = `
+            <li><a href="/frontend/index.html">Home</a></li>
+            <li><a href="/frontend/categories.html">Categories</a></li>
+            <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
+        `;
+
+        if (userInfo) {
+            navHtml += `
+                <li><a href="/frontend/user_end/user.html">Dashboard</a></li>
+                <li><a href="/frontend/user_end/profile.html">My Profile</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            `;
+        } else {
+            navHtml += `<li><a href="/frontend/login.html">Login/Register</a></li>`;
+        }
+
+        navList.innerHTML = navHtml;
+
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('userInfo');
+                location.reload();
+            });
+        }
+    });
+    </script>
 </body>
 </html>

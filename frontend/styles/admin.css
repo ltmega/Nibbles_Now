@@ -38,7 +38,7 @@ body {
     background: #222;
     color: #ffd700;
 }
-.admin-dashboard, .admin-orders-section, .admin-products-section {
+.admin-dashboard, .admin-orders-section, .admin-products-section, .admin-riders-section, .admin-users-section {
     background: #222;
     color: #fff;
     border-radius: 10px;
@@ -165,4 +165,39 @@ footer {
 }
 .admin-table tr:hover {
   background: #333;
+}
+
+.admin-riders-section table, .admin-orders-section table, .admin-users-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    background: #222;
+    color: #fff;
+}
+.admin-riders-section th, .admin-orders-section th, .admin-users-section th, .admin-riders-section td, .admin-orders-section td, .admin-users-section td {
+    padding: 0.8em 0.5em;
+    border-bottom: 1px solid #444;
+    text-align: left;
+}
+.admin-riders-section th, .admin-orders-section th, .admin-users-section th {
+    background: #111;
+    color: #ffd700;
+}
+.admin-riders-section tr:hover, .admin-users-section tr:hover, .admin-orders-section tr:hover {
+    background: #333;
+}
+.admin-riders-section button, .admin-orders-section button, .admin-users-section button {
+    background: #ffd700;
+    color: #222; 
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin-top: auto;
+    transition: background 0.2s;
+}
+.admin-riders-section button:hover, .admin-orders-section button:hover, .admin-users-section button:hover {
+    background: #fff;
+    color: #000;
 }

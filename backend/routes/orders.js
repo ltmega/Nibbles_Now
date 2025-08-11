@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
 
+
+// Example: Get all orders (replace with real controller logic)
+router.get('/', (req, res) => {
+    pool.query('SELECT * FROM orders', (err, results) => {
+        if (err) return res.status(500).json({ message: 'Database error.' });
+        res.json(results);
+    });
+});
+
+
 // Place a new order
 router.post('/', (req, res) => {
     const { userId, deliveryAddress, cart } = req.body;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - Nibbles Now</title>
     <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/main.css">
 </head>
 <body>
     <header>
@@ -16,21 +17,56 @@
                 <li><a href="/frontend/cart.html">Cart (<span id="cart-item-count">0</span>)</a></li>
                 <li><a href="/frontend/user_end/user.html">Dashboard</a></li>
                 <li><a href="/frontend/user_end/orders.html">My Orders</a></li>
+                <li><a href="/frontend/user_end/profile.html" class="active">My Profile</a></li>
                 <li><a href="#" id="logout-btn">Logout</a></li>
             </ul>
         </nav>
     </header>
-    <main class="profile-section">
-        <h1>My Profile</h1>
-        <div id="profile-container">
-            <!-- Profile info will be loaded here via JS -->
+
+    <main>
+        <div class="profile-container">
+            <h1>My Profile</h1>
+            <div id="message" class="message"></div>
+
+            <form id="user-profile-form" class="profile-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" id="full_name" name="full_name">
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number:</label>
+                    <input type="text" id="phone_number" name="phone_number">
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address:</label>
+                    <textarea id="address" name="address" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="password">New Password (leave blank to keep current):</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="button">Update Profile</button>
+                    <!-- Add a cancel/back button if needed -->
+                </div>
+            </form>
         </div>
-        <a href="/frontend/user_end/edit-profile.html" class="button">Edit Profile</a>
     </main>
+
     <footer>
         <p>&copy; 2025 Nibbles Now</p>
     </footer>
-    <script src="/frontend/js/profile.js"></script>
+
     <script src="/frontend/js/cart.js"></script>
+    <script src="/frontend/js/auth.js"></script>
+    <script src="/frontend/js/user.js"></script>
 </body>
 </html>

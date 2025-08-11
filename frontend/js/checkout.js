@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             checkoutForm.style.display = 'none';
             return;
         }
+        // Calculate subtotal
         let subtotal = 0;
         summaryDiv.innerHTML = `
             <h3>Your Order</h3>
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).join('')}
             </ul>
             <div class="summary-item"><span>Subtotal:</span> <span>UGX ${subtotal.toLocaleString()}</span></div>
+            <!-- Delivery fee is currently hardcoded but can be made dynamic -->
             <div class="summary-item"><span>Delivery Fee:</span> <span>UGX 5,000</span></div>
             <div class="summary-item total"><span>Total:</span> <span>UGX ${(subtotal + 5000).toLocaleString()}</span></div>
         `;

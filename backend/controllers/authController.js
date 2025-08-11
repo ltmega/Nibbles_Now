@@ -1,7 +1,8 @@
 const pool = require('../config/db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const jwtSecret = 'your_secret_key';
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET || 'your_secret_key';
 
 exports.login = (req, res) => {
     const { identifier, username, password, role } = req.body;

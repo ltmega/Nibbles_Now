@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cart.forEach(item => {
             subtotal += item.price * (item.quantity || 1);
         });
+        // Use a configurable delivery fee (currently hardcoded but can be made dynamic)
+        // Use a configurable delivery fee (currently hardcoded but can be made dynamic)
         const deliveryFee = 5000;
         const total = subtotal + deliveryFee;
         return { subtotal, deliveryFee, total };

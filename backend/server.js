@@ -8,6 +8,7 @@ const productRoutes = require('./routes/products.js');
 const orderRoutes = require('./routes/orders.js');
 const userRoutes = require('./routes/users.js');
 const categoriesRoutes = require('./routes/categories.js');
+const ridersRoutes= require('./routes/riders.js');
 
 db.getConnection((err, connection) => {
     if (err) {
@@ -23,7 +24,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
+app.use('/images', express.static(path.join(__dirname, '../images')));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoriesRoutes);
+app.use('/api/riders', ridersRoutes);
 
 app.get('/', (req, res) => res.send('Nibbles Now API Running!'));
 

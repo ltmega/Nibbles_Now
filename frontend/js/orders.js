@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/frontend/login.html';
     });
 
-    fetch(`http://localhost:3000/api/orders/user/${user.user_id}`)
+    fetch(`http://localhost:3000/api/orders/${user.user_id}`)
         .then(res => res.json())
         .then(orders => {
             const tbody = document.getElementById('orders-table-body');

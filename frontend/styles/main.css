@@ -1,0 +1,181 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              /* frontend/styles/main.css */
+
+.auth-container, .dashboard-container, .profile-container, .orders-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    text-align: center;
+}
+
+.auth-container h1, .dashboard-container h1, .profile-container h1, .orders-container h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+.auth-options .button {
+    margin: 10px;
+    width: 180px;
+}
+
+.login-form, .register-form, .profile-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.login-form .form-group, .register-form .form-group, .profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label, .register-form label, .profile-form label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.login-form input, .register-form input, .profile-form input, .profile-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-color);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.login-form .button, .register-form .button, .profile-form .button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.auth-container p {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: var(--light-text-color);
+}
+
+.auth-container p a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Specific Styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.dashboard-card {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 5px var(--shadow-light);
+    text-align: left;
+}
+
+.dashboard-card h2 {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.dashboard-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-card ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.dashboard-card ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dashboard-card ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Profile specific */
+.profile-form .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+.profile-form .button-group .button {
+    flex: 1;
+}
+
+/* Orders List */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+.orders-table th {
+    background-color: #e0e0e0;
+    color: #333;
+    font-weight: 600;
+}
+
+.orders-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.orders-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.orders-table .status-pending { color: #FFC107; font-weight: bold; }
+.orders-table .status-confirmed { color: #2196F3; font-weight: bold; }
+.orders-table .status-preparing { color: #FF9800; font-weight: bold; }
+.orders-table .status-out_for_delivery { color: #FF5722; font-weight: bold; }
+.orders-table .status-delivered { color: #4CAF50; font-weight: bold; }
+.orders-table .status-cancelled { color: #F44336; font-weight: bold; }
+
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-container, .dashboard-container, .profile-container, .orders-container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .auth-container h1, .dashboard-container h1, .profile-container h1, .orders-container h1 {
+        font-size: 1.8rem;
+    }
+    .auth-options .button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}                                                                                               

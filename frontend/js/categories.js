@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchCategoriesWithProducts() {
         const response = await fetch('http://localhost:3000/api/categories/with-products');
         let categories = await response.json();
-
+        // Ensure categories is always an array
+        if (!Array.isArray(categories)) categories = Object.values(categories);
         // Sort and filter categories in the desired order, remove undefined
         categories = desiredOrder.map(name => categories.find(cat => cat.category_name === name)).filter(Boolean);
-
         displayCategories(categories);
     }
 
@@ -84,4 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fetchCategoriesWithProducts();
+
+    document.getElementById('logout-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem('token');
+        window.location.href = '/frontend/login.html';
+    });
+    
 });

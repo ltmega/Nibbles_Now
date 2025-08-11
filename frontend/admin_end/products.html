@@ -23,24 +23,46 @@
     </header>
     <main class="admin-products-section">
         <h2>Manage Products</h2>
-                
         <button id="show-add-form" class="button">Add Product</button>
+        <!-- Add Product Modal -->
         <div id="add-product-modal" class="modal">
           <div class="modal-content">
             <span id="close-add-form" class="close">&times;</span>
-            <form id="add-product-form">
+            <form id="add-product-form" enctype="multipart/form-data">
               <h3>Add New Product</h3>
               <label for="product-name">Product Name</label>
-              <input type="text" id="product-name" required>
+              <input type="text" id="product-name" name="name" required>
               <label for="product-description">Description</label>
-              <input type="text" id="product-description" required>
+              <input type="text" id="product-description" name="description" required>
               <label for="product-price">Price</label>
-              <input type="number" id="product-price" required min="0">
+              <input type="number" id="product-price" name="price" required min="0">
               <label for="product-category">Category</label>
-              <input type="text" id="product-category" required>
-              <label for="product-image">Image URL</label>
-              <input type="text" id="product-image">
+              <input type="text" id="product-category" name="category" required>
+              <label for="product-image">Image</label>
+              <input type="file" id="product-image" name="image" accept="image/*" required>
               <button type="submit" class="button">Save</button>
+            </form>
+          </div>
+        </div>
+        <!-- Edit Product Modal -->
+        <div id="edit-product-modal" class="modal">
+          <div class="modal-content">
+            <span id="close-edit-form" class="close">&times;</span>
+            <form id="edit-product-form" enctype="multipart/form-data">
+              <h3>Edit Product</h3>
+              <input type="hidden" id="edit-product-id" name="id">
+              <label for="edit-product-name">Product Name</label>
+              <input type="text" id="edit-product-name" name="name" required>
+              <label for="edit-product-description">Description</label>
+              <input type="text" id="edit-product-description" name="description" required>
+              <label for="edit-product-price">Price</label>
+              <input type="number" id="edit-product-price" name="price" required min="0">
+              <label for="edit-product-category">Category</label>
+              <input type="text" id="edit-product-category" name="category" required>
+              <label for="edit-product-image">Image</label>
+              <input type="file" id="edit-product-image" name="image" accept="image/*">
+              <input type="hidden" id="edit-product-image-url" name="image_url">
+              <button type="submit" class="button">Update</button>
             </form>
           </div>
         </div>
@@ -65,7 +87,6 @@
     <footer>
         <p>&copy; 2025 Nibbles Now - Admin Area</p>
     </footer>
-    <script src="/frontend/admin_end/product.js"></script>
-
+    <script src="/frontend/admin_end/js/product.js"></script>
 </body>
 </html>

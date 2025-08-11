@@ -4,7 +4,10 @@ const pool = require('../config/db');
 
 // Example: Get all users (replace with real controller logic)
 router.get('/', (req, res) => {
-    res.json({ message: 'Users route working!' });
+    pool.query('SELECT * FROM users', (err, results) => {
+        if (err) return res.status(500).json({ message: 'Database error.' });
+        res.json(results);
+    });
 });
 
 // Get or create user by username

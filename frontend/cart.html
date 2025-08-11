@@ -11,7 +11,7 @@
     <header>
         <div class="logo">Nibbles Now</div>
         <nav>
-            <ul>
+            <ul id="nav-list">
                 <li><a href="/">Home</a></li>
                 <li><a href="/frontend/categories.html">Categories</a></li>
                 <li><a href="#">Cart (<span id="cart-item-count">0</span>)</a></li>
@@ -45,5 +45,25 @@
     </footer>
 
     <script src="/frontend/js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navList = document.getElementById('nav-list');
+            const userInfo = localStorage.getItem('userInfo');
+            
+            if (userInfo) {
+                // User is logged in, replace Login/Register with Logout
+                const loginItem = navList.querySelector('li:last-child');
+                if (loginItem && loginItem.querySelector('a').href.includes('login')) {
+                    loginItem.innerHTML = '<a href="#" id="logout-btn">Logout</a>';
+                    document.getElementById('logout-btn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        localStorage.removeItem('userInfo');
+                        localStorage.removeItem('token');
+                        location.reload();
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
